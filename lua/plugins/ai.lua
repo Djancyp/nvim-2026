@@ -3,6 +3,7 @@
 --   <Tab>  accept suggestion (after snippet jump, else normal Tab)
 --   <C-l>  accept next word
 --   <C-]>  dismiss
+-- statusline icon: lua/plugins/ui.lua
 
 local function preview()
 	return require("supermaven-nvim.completion_preview")
@@ -51,27 +52,11 @@ return {
 		},
 	},
 
-	-- statusline icon while Supermaven runs
-	{
-		"nvim-lualine/lualine.nvim",
-		opts = function(_, opts)
-			table.insert(opts.sections.lualine_x, 2, {
-				function()
-					return " "
-				end,
-				cond = function()
-					return package.loaded["supermaven-nvim"] and require("supermaven-nvim.api").is_running()
-				end,
-				color = "Special",
-			})
-		end,
-	},
-
 	-- hide startup chatter
 	{
 		"folke/noice.nvim",
-		opts = function(_, opts)
-			vim.list_extend(opts.routes, {
+		opts = {
+			routes = {
 				{
 					filter = {
 						event = "msg_show",
@@ -82,7 +67,7 @@ return {
 					},
 					skip = true,
 				},
-			})
-		end,
+			},
+		},
 	},
 }

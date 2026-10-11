@@ -63,6 +63,16 @@ return {
 						{ "filename", path = 1, symbols = { modified = "  ", readonly = " 󰌾 " } },
 					},
 					lualine_x = {
+						-- Supermaven running (lua/plugins/ai.lua)
+						{
+							function()
+								return " "
+							end,
+							cond = function()
+								return package.loaded["supermaven-nvim"] ~= nil and require("supermaven-nvim.api").is_running()
+							end,
+							color = "Special",
+						},
 						-- stylua: ignore
 						{
 							function() return require("noice").api.status.command.get() end,
@@ -144,6 +154,7 @@ return {
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		dependencies = { "MunifTanjim/nui.nvim" },
+		opts_extend = { "routes" }, -- other files can add routes
 		opts = {
 			lsp = {
 				override = {
