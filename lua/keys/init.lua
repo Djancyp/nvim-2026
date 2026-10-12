@@ -83,7 +83,7 @@ map("n", "sa", "ggVG", { desc = "Insert new line below" })
 map("n", "<C-w><C-v>", "<C-w>v<C-w>w zz", { desc = "Split window vertically and jump" })
 
 -- root save
-map("n", "<leader>ss", "<cmd>:lua require'utils'.sudo_write()<CR>", { desc = "Sudo write" })
+map("n", "<leader>ss", "<cmd>SudaWrite<CR>", { desc = "Sudo write" })
 
 -- Split window horizontally and center cursor
 map("n", "<C-w><C-s>", "<C-w>s<C-w>w zz", { desc = "Split window horizontally and jump" })
